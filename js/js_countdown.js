@@ -4,29 +4,10 @@
 // ---> Get countdown date and time working
 
 window.onload = function () {
-	console.log("----->JavaScript is connected.<-----");
-
-	// create array of months
-	var mm = [
-		["January"], ["February"], ["March"], ["April"], ["May"], ["June"], ["July"], ["August"], ["September"], ["October"], ["November"], ["December"]];
-	// create array of weekdays
-	var weekDays = [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"], ["Thursday"], ["Friday"], ["Saturday"]];
-
-	// create date object and apply variables to different parts of the date
-	var d = new Date();
-	var thisWeekDay = (weekDays[d.getDay()]);
-	var thisMonth = (mm[d.getMonth()]);
-	var thisNumericDay =(d.getDate());
-	var thisYear = (d.getFullYear());
-
-	// get time
-	var currentHour = d.getHours();
-	var currentMinute = d.getMinutes();
+	console.log("-----> JavaScript is connected. <-----");
 	
-	var fullDate = thisWeekDay + ", " + thisMonth + " " + thisNumericDay + ", " + thisYear;
 
-	document.getElementById("fullDate").innerHTML = fullDate;
-
+	//---------------> Working Functions <---------------
 	// make sure that hour is represented as HH:MM, despite if hour is 1 digit
 	function twoDigits(i) {
 		if (i < 10) {
@@ -45,30 +26,51 @@ window.onload = function () {
 	}
 	// create function to adjust time to 12-hour format
 	function twelveHourTime(currentHour) {
-		// var pmHour;
 		if (currentHour > 12) {
 			currentHour = (currentHour - 12);
 		}
 		return currentHour;
 	}
+	//---------------> End working functions <---------------
 
-	var morningAfternoon = amPm(currentHour);
-	// make both hours and minutes display in double digits
-	var modifiedHour = twelveHourTime(twoDigits(currentHour));
-	var modifiedMinutes= twoDigits(currentMinute);
 
+	//---------------> Begin necessary arrays <---------------
+	// months
+	var mm = [
+		["January"], ["February"], ["March"], ["April"], ["May"], ["June"], ["July"], ["August"], ["September"], ["October"], ["November"], ["December"]];
+	// weekdays
+	var weekDays = [["Sunday"], ["Monday"], ["Tuesday"], ["Wednesday"], ["Thursday"], ["Friday"], ["Saturday"]];
+	//---------------> End of arrays <---------------
+
+
+	//---------------> Find current date and time <--------------- 
+	// date
+	var d = new Date();
+	var thisWeekDay = (weekDays[d.getDay()]);
+	var thisMonth = (mm[d.getMonth()]);
+	var thisNumericDay =(d.getDate());
+	var thisYear = (d.getFullYear());
+	var thisFullDate = thisWeekDay + ", " + thisMonth + " " + thisNumericDay + ", " + thisYear;
+	document.getElementById("fullDate").innerHTML = thisFullDate;
+
+	//time
+	var thisCurrentHour = d.getHours();
+	var thisCurrentMinute = d.getMinutes();
+	// apply functions from above to format time properly(am/pm, 12hour, 2digit)
+	var morningAfternoon = amPm(thisCurrentHour);
+	var modifiedHour = twelveHourTime(twoDigits(thisCurrentHour));
+	var modifiedMinutes= twoDigits(thisCurrentMinute);
 	var currentTime = modifiedHour + ":" + modifiedMinutes + morningAfternoon;
-
 	document.getElementById("currentTime").innerHTML = currentTime;
+	//---------------> End current date and time <---------------
 
-	// enable countdown button to grab date value
-	var chosenDate;
-	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
+
+
 	
 // function countDownButton() {
 // 	console.log("----->Begin countDownButton data.<-----");
-	chosenDate = document.getElementById("chosenDate").value;
-	chosenTime = document.getElementById("chosenTime").value;
+
+
 // 	console.log("chosenDate is: " + chosenDate);
 // 	console.log("chosenTime is: " + chosenTime);
 // 	var countDownDate = new Date(chosenDate).getTime();
@@ -83,18 +85,29 @@ window.onload = function () {
 // 	var timeDifference = timeGap.getTime();
 // 	document.getElementById("futureCountdown").innerHTML = timeDifference;
 // }
-	var countDownDate = new Date(chosenDate).getTime();
-	console.log("countDownDate: " + countDownDate);
-	var timeNow = new Date().getTime();
-	var timeGap = countDownDate - timeNow;
-	console.log("timeNow: " + timeNow);
-
+		// enable countdown button to grab date value
+	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
 	function millisecondsToTime(timeGap) {
-		console.log("----->Begin millisecondsToTime data<-----");
-		var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
-		console.log("Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds);
+		console.log("-----> Begin millisecondsToTime data <-----");
+		var chosenDate = document.getElementById("chosenDate").value;
+		var chosenTime = document.getElementById("chosenTime").value;
+		var countDownDate = new Date(chosenDate).getTime();
+		console.log("countDownDate: " + countDownDate);
+		var timeNow = new Date().getTime();
+		timeGap = countDownDate - timeNow;
+		console.log("timeGap:" + timeGap);
+		console.log("timeNow: " + timeNow);
+		var x = setInterval(function() {
+			var years = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365));
+			var days = Math.floor(timeGap / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
+			var finalCountdown = "Years:" + years + " Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
+			console.log(finalCountdown);
+			document.getElementById("futureCountdown").innerHTML = finalCountdown;
+		}, 1000);
+
 	}
 
 	//Begin using function to calculate and set interval for countdown
@@ -102,32 +115,32 @@ window.onload = function () {
 	//Set the date we're counting down to
 	// var chosenDate = prompt("Enter future date:");
 	// var chosenTime = prompt("Enter time");
-	var countDownDate = new Date(chosenDate).getTime();
-	console.log("Chosen Time: " + countDownDate);
+	// var countDownDate = new Date(chosenDate).getTime();
+	// console.log("Chosen Time: " + countDownDate);
 
 	//Update the count down every 1 second
-	var x = setInterval(function() {
-		// Get todays date and time
-		var now = new Date().getTime();
+	// var x = setInterval(function() {
+	// 	// Get todays date and time
+	// 	var now = new Date().getTime();
 		
-		// Find the distance between now an the count down date
-		var distance = countDownDate - now;
+	// 	// Find the distance between now an the count down date
+	// 	var distance = countDownDate - now;
 
-		// Time calculations for days, hours, minutes and seconds
-		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	// 	// Time calculations for days, hours, minutes and seconds
+	// 	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	// 	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	// 	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	// 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 		
-		// Output the result in an element with id="futureCountdown"
-		document.getElementById("futureCountdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-			if (distance < 0) {
-				setInterval(x);
-				days = days - (1 * day);
-				document.getElementById("demo").innerHTML = "EXPIRED";
-			}
+	// 	// Output the result in an element with id="futureCountdown"
+	// 	document.getElementById("futureCountdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+	// 		if (distance < 0) {
+	// 			setInterval(x);
+	// 			days = days - (1 * day);
+	// 			document.getElementById("demo").innerHTML = "EXPIRED";
+	// 		}
 		
-	}, 1000); // end of setInterval function
+	// }, 1000); // end of setInterval function
 
 
 }; // end of window.onload
