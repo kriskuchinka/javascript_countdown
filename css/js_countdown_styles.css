@@ -1,3 +1,43 @@
 * {
-	background-color: tan;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
+body {
+	width: 100%;
+	margin: 0;
+	background-color: gray;
+}
+
+.alarm-clock {
+    background-color: black;
+    color: green;
+    border-radius: 100px;
+    height: 100%;
+    display: inline-block;
+    width: 80%;
+    padding: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 30px;
+}
+
+.current-date, .current-time {
+	width: 90%;
+	/*padding: 5%;*/
+/*	margin-top: 20px;
+	margin-right: 3%;
+	margin-left: 3%;*/
+	margin: 0 auto;
+	text-align: center;
+	font-size: 2em;
+}
+
+/*.current-date {
+	float: left;
+}
+
+.current-time {
+	float: right;
+}*/

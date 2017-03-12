@@ -7,19 +7,25 @@
 	<script type="text/javascript" src="js/js_countdown.js"></script>
 </head>
 <body>
+	<section class="date-choice">
+		<h1>When's the Big Date?</h1>
+		<p>Select a Date:<input type="date" id="chosenDate">
+		Select a Time:<input type="time" id="chosenTime">
+		<input type="button" value="Countdown Time!" id="chosenDateButton"></p>
+	</section>
 
-	<h1>Current Date: <span id="fullDate"></span></h1>
-	
-	<h1>Current Time: <span id="currentTime"></span></h1>
+	<section class="alarm-clock">
+		<h1 class="current-date current-data"><!-- Current Date:  --><span id="fullDate"></span></h1>
+		
+		<h1 class="current-time current-data"><!-- Current Time:  --><span id="currentTime"></span></h1>
 
-	<h1>When's the Big Date?</h1>
-	<p>Select a Date:<input type="date" id="chosenDate"></p>
-	<p>Select a Time:<input type="time" id="chosenTime"></p>
-	<p><input type="button" value="Countdown Time!" id="chosenDateButton"></p>
 
-	<p id="chosenDateDisplay"></p>
-	
-	<p id ="futureCountdown"></p>
+
+		<p id="chosenDateDisplay"></p>
+		
+		<p id ="futureCountdown"></p>
+	</section> <!-- end alarm-clock section -->
+
 
 </body>
 </html>

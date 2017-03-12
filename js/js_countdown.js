@@ -67,24 +67,39 @@ window.onload = function () {
 
 	// enable countdown button to grab date value
 	// var chosenDate;
-	document.getElementById("chosenDateButton").addEventListener("click", countDownButton);
+	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
+	
 	function countDownButton() {
-		console.log("Begin countDownButton data.");
+		console.log("----->Begin countDownButton data.<-----");
 		chosenDate = document.getElementById("chosenDate").value;
 		chosenTime = document.getElementById("chosenTime").value;
 		console.log("chosenDate is: " + chosenDate);
 		console.log("chosenTime is: " + chosenTime);
-		var countDownDate = new Date(chosenDate, chosenTime);
+		var countDownDate = new Date(chosenDate).getTime();
 		//??????? var countDownDate = chosenDate + " " + chosenTime;
 		console.log("This is the date and time you have chosen: " + countDownDate);
 		var currentTime = new Date().getTime();
-		console.log("The current time is: " + currentTime);
 		var timeGap = countDownDate - currentTime;
-		console.log("CountDownDate is: " + countDownDate);
-		console.log("CurrentTime is: " + currentTime);
-		console.log("Time gap is: " + timeGap);
-		document.getElementById("futureCountdown").innerHTML = timeGap;
+		
+		console.log("countDownDate is: " + countDownDate);
+		console.log("currentTime is: " + currentTime);
+		console.log("timeGap is: " + timeGap);
+		var timeDifference = timeGap.getTime();
+		document.getElementById("futureCountdown").innerHTML = timeDifference;
 	}
+	var countDownDate = new Date(chosenDate).getTime();
+	var currentTime = new Date().getTime();
+	var timeGap = countDownDate - currentTime;
+
+	function millisecondsToTime(timeGap) {
+		console.log("----->Begin millisecondsToTime data<-----");
+		var seconds = parseInt((timeGap / 1000) % 60);
+		var minutes = parseInt((timeGap / (1000 * 60)) % 60);
+		var hours = parseInt((timeGap / (1000 * 60 * 60)) % 24);
+		return hours + minutes + seconds;
+		console.log("Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds);
+	}
+
 	//Begin using function to calculate and set interval for countdown
 	 
 	//Set the date we're counting down to
