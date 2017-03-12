@@ -1,3 +1,8 @@
+// ---> Other work that needs to be done or fixed:
+// ---> Make current time change as minutes and hours change (set interval)
+// ---> Style Current Day and Time to look like an alarm clock of some sort
+// ---> Get countdown date and time working
+
 window.onload = function () {
 	console.log("JavaScript is connected.");
 
@@ -42,7 +47,7 @@ window.onload = function () {
 		}
 		return morningAfternoon;
 	}
-
+	// create function to adjust time to 12-hour format
 	function twelveHourTime(currentHour) {
 		// var pmHour;
 		if (currentHour > 12) {
@@ -61,28 +66,32 @@ window.onload = function () {
 	document.getElementById("currentTime").innerHTML = currentTime;
 
 	// enable countdown button to grab date value
-	var chosenDate;
-	document.getElementById("chosenDateButton").addEventListener("click", countdownButton);
-	function countdownButton() {
-		console.log("You clicked me.");
+	// var chosenDate;
+	document.getElementById("chosenDateButton").addEventListener("click", countDownButton);
+	function countDownButton() {
+		console.log("Begin countDownButton data.");
 		chosenDate = document.getElementById("chosenDate").value;
 		chosenTime = document.getElementById("chosenTime").value;
-		console.log(chosenDate, chosenTime);
-		// var countDownDate = new Date(chosenDate, chosenTime);
-		var countDownDate = chosenDate + " " + chosenTime;
-		console.log("This is the date you have chosen: " + countDownDate);
+		console.log("chosenDate is: " + chosenDate);
+		console.log("chosenTime is: " + chosenTime);
+		var countDownDate = new Date(chosenDate, chosenTime);
+		//??????? var countDownDate = chosenDate + " " + chosenTime;
+		console.log("This is the date and time you have chosen: " + countDownDate);
 		var currentTime = new Date().getTime();
 		console.log("The current time is: " + currentTime);
 		var timeGap = countDownDate - currentTime;
+		console.log("CountDownDate is: " + countDownDate);
+		console.log("CurrentTime is: " + currentTime);
+		console.log("Time gap is: " + timeGap);
 		document.getElementById("futureCountdown").innerHTML = timeGap;
 	}
 	//Begin using function to calculate and set interval for countdown
 	 
 	//Set the date we're counting down to
 	// var chosenDate = prompt("Enter future date:");
-	var chosenTime = prompt("Enter time");
-	var countDownDate = new Date(chosenDate, chosenTime).getTime();
-
+	// var chosenTime = prompt("Enter time");
+	var countDownDate = new Date(chosenDate).getTime();
+	console.log("Chosen Time: " + countDownDate);
 
 	//Update the count down every 1 second
 	var x = setInterval(function() {
