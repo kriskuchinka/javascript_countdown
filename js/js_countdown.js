@@ -99,7 +99,7 @@ window.onload = function () {
 		console.log("timeNow: " + timeNow);
 		var x = setInterval(function() {
 			var years = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365));
-			var days = Math.floor(timeGap / (1000 * 60 * 60 * 24));
+			var days = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24);
 			var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
 			var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
