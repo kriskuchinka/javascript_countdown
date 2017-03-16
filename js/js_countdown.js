@@ -86,25 +86,23 @@ window.onload = function () {
 // 	document.getElementById("futureCountdown").innerHTML = timeDifference;
 // }
 		// enable countdown button to grab date value
-	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
+	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime());
 	function millisecondsToTime(timeGap) {
-		console.log("-----> Begin millisecondsToTime data <-----");
 		var chosenDate = document.getElementById("chosenDate").value;
 		var chosenTime = document.getElementById("chosenTime").value;
 		var countDownDate = new Date(chosenDate).getTime();
-		console.log("countDownDate: " + countDownDate);
-		var timeNow = new Date().getTime();
-		timeGap = countDownDate - timeNow;
-		console.log("timeGap:" + timeGap);
-		console.log("timeNow: " + timeNow);
+
 		var x = setInterval(function() {
+
+			var timeNow = new Date().getTime();
+			timeGap = countDownDate - timeNow;
+
 			var years = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365));
-			var days = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24);
+			var days = Math.floor(timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60 *24);
 			var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
 			var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
-			var finalCountdown = "Years:" + years + " Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
-			console.log(finalCountdown);
+			var finalCountdown = "Years: " + years + " Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
 			document.getElementById("futureCountdown").innerHTML = finalCountdown;
 		}, 1000);
 
