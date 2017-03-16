@@ -1,7 +1,7 @@
 // ---> Other work that needs to be done or fixed:
 // ---> Make current time change as minutes and hours change (set interval)
-// ---> Style Current Day and Time to look like an alarm clock of some sort
-// ---> Get countdown date and time working
+// ---> Get countdown date and time working (time does not work yet, only by date)
+// ---> Adjust to PST (can I allow user to choose time zone?)
 
 window.onload = function () {
 	console.log("-----> JavaScript is connected. <-----");
@@ -91,7 +91,7 @@ window.onload = function () {
 
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
-		// var chosenTime = document.getElementById("chosenTime").value;
+		var chosenTime = document.getElementById("chosenTime").value;
 		var countDownDate = new Date(chosenDate).getTime();
 
 		if (timeGap) {
