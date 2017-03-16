@@ -89,22 +89,27 @@ window.onload = function () {
 	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime());
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
-		var chosenTime = document.getElementById("chosenTime").value;
+		// var chosenTime = document.getElementById("chosenTime").value;
 		var countDownDate = new Date(chosenDate).getTime();
+		console.log(countDownDate);
 
-		var x = setInterval(function() {
+		if (timeGap) {
+			var x = setInterval(function() {
 
-			var timeNow = new Date().getTime();
-			timeGap = countDownDate - timeNow;
+				var timeNow = new Date().getTime();
+				timeGap = countDownDate - timeNow;
+				
 
-			var years = Math.floor(timeGap / (1000 * 60 * 60 * 24 * 365));
-			var days = Math.floor(timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60 *24);
-			var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
-			var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
-			var finalCountdown = "Years: " + years + " Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
-			document.getElementById("futureCountdown").innerHTML = finalCountdown;
-		}, 1000);
+				var days = Math.floor(timeGap % (1000 * 60 * 60 * 24));
+				var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
+				
+				var finalCountdown = "Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
+				
+			}, 1000);
+		document.getElementById("futureCountdown").innerHTML = finalCountdown;
+		}
 
 	}
 
