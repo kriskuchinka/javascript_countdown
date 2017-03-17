@@ -2,6 +2,7 @@
 // ---> Make current time change as minutes and hours change (set interval)
 // ---> Get countdown date and time working (time does not work yet, only by date)
 // ---> Adjust to PST (can I allow user to choose time zone?)
+// ---> Figure out events when radio buttons are clicked
 
 window.onload = function () {
 	console.log("-----> JavaScript is connected. <-----");
@@ -92,6 +93,8 @@ window.onload = function () {
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
 		var chosenTime = document.getElementById("chosenTime").value;
+		// var dayTime = chosenDate.getTime();
+		// console.log(dayTime);
 		var countDownDate = new Date(chosenDate).getTime();
 
 		if (timeGap) {
