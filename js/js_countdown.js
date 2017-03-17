@@ -88,14 +88,40 @@ window.onload = function () {
 // }
 		// enable countdown button to grab date value
 	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
+//-----> Attempt code from StackOverflow
+	// var hms = '02:04:33';   // your input string
+	// var a = hms.split(':'); // split it at the colons
 
+	// minutes are worth 60 seconds. Hours are worth 60 minutes.
+	// var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+//-----> End code from StackOverflow
 
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
 		var chosenTime = document.getElementById("chosenTime").value;
+		console.log("chosenDate var= " + chosenDate);
+		console.log("chosenTime var = " + chosenTime);
+		
+		//---------> attempt to try a different way to make the time part of the countdown
+		var date = Date.parse(chosenDate);
+		console.log("Date variable is: " + date);
+
+		var time = Date.parse(chosenTime);
+		console.log("Time variable is: " + time);
+
+		var totalMills = chosenTime;
+		var finalMills = totalMills.split(":");
+
+		var timeToMills = (+finalMills[0]) * 60 + (+finalMills[1]) * 60 * 1000;
+		console.log("timeToMills var =" + timeToMills);
+		// var time = Date.parse(chosenTime) - Date.parse(new Date());
+		// var time = Date.parse(chosenTime);
+		// var time = chosenTime.getMilliseconds();
+
 		// var dayTime = chosenDate.getTime();
 		// console.log(dayTime);
 		var countDownDate = new Date(chosenDate).getTime();
+		console.log("countDownDate var= " + countDownDate);
 
 		if (timeGap) {
 			var x = setInterval(function() {
