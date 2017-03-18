@@ -99,8 +99,9 @@ window.onload = function () {
 
 //-----> Begin function to clear input on reset
 	function clearInput() {
-		document.getElementById("chosenDate").value = " ";
-		document.getElementById("chosenTime").value = " ";
+		document.getElementById("selectionForm").reset();
+		document.getElementById("futureCountdown").innerHTML = "";
+		clearInterval(x);
 	}
 
 	function millisecondsToTime(timeGap) {
