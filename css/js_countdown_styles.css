@@ -20,6 +20,7 @@ body {
 .date-choice {
 	text-align: center;
 	padding: 10px;
+	width: 100%;
 }
 
 .selection {

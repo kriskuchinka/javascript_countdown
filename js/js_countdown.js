@@ -88,6 +88,7 @@ window.onload = function () {
 // }
 		// enable countdown button to grab date value
 	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
+	document.getElementById("resetButton").addEventListener("click", clearInput);
 //-----> Attempt code from StackOverflow
 	// var hms = '02:04:33';   // your input string
 	// var a = hms.split(':'); // split it at the colons
@@ -95,6 +96,12 @@ window.onload = function () {
 	// minutes are worth 60 seconds. Hours are worth 60 minutes.
 	// var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
 //-----> End code from StackOverflow
+
+//-----> Begin function to clear input on reset
+	function clearInput() {
+		document.getElementById("chosenDate").value = " ";
+		document.getElementById("chosenTime").value = " ";
+	}
 
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
