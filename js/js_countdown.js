@@ -69,6 +69,7 @@ window.onload = function () {
 			reset.onclick = function() {
 				// console.log("You clicked reset button.");
 				clearInterval(x);
+				document.getElementById("selectionForm").reset();
 				document.getElementById("futureCountdown").innerHTML = "";
 
 			}; // end of reset.onclick function
@@ -95,7 +96,7 @@ window.onload = function () {
 	var thisMonth = (mm[d.getMonth()]);
 	var thisNumericDay =(d.getDate());
 	var thisYear = (d.getFullYear());
-	var thisFullDate = thisWeekDay + ", " + thisMonth + " " + thisNumericDay + ", " + thisYear;
+	var thisFullDate = thisWeekDay + ",<br>" + thisMonth + " " + thisNumericDay + ", " + thisYear + "<br>";
 	document.getElementById("fullDate").innerHTML = thisFullDate;
 
 	//time

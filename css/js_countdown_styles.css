@@ -69,17 +69,24 @@ body {
     width: 96%;
     padding: 5%;
     margin: 2%;
+    top: 0;
+}
+
+.current-time, .countdown {
+	width: 40%;
+	margin: 0 5%;
+	float: left;
+	text-align: center;
 }
 
 .current-data-heading {
 	text-decoration: underline;
-	padding: 26px 0px;
 }
 
 .current-data {
 	width: 90%;
 	margin: 0 auto;
 	text-align: center;
-	font-size: 2em;
+	font-size: 1.6em;
 }
 
