@@ -88,7 +88,12 @@ window.onload = function () {
 // }
 		// enable countdown button to grab date value
 	document.getElementById("chosenDateButton").addEventListener("click", millisecondsToTime);
-	document.getElementById("resetButton").addEventListener("click", clearInput);
+
+		// set up reset button functionality
+
+		
+
+
 //-----> Attempt code from StackOverflow
 	// var hms = '02:04:33';   // your input string
 	// var a = hms.split(':'); // split it at the colons
@@ -98,11 +103,11 @@ window.onload = function () {
 //-----> End code from StackOverflow
 
 //-----> Begin function to clear input on reset
-	function clearInput() {
-		document.getElementById("selectionForm").reset();
-		document.getElementById("futureCountdown").innerHTML = "";
-		clearInterval(x);
-	}
+	// function clearInput() {
+	// 	document.getElementById("selectionForm").reset();
+	// 	document.getElementById("futureCountdown").innerHTML = "";
+	// 	clearInterval(x);
+	// }
 
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
@@ -149,11 +154,34 @@ window.onload = function () {
 					document.getElementById("futureCountdown").innerHTML = "That was in the past.";
 				}
 				
+
+
+				// if (document.getElementById("resetButton").click()) {
+				// 	// clearInterval(x);
+				// 	console.log("You clicked the reset button.");
+				// }
+
+
+				
 			}, 1000);
+			var reset = document.getElementById("resetButton");
+			reset.onclick = function() {
+				console.log("You clicked reset button.");
+				clearInterval(x);
+				document.getElementById("futureCountdown").innerHTML = "";
+
+			};
+		}
 
 		}
 
-	}
+
+		// function resetCountdown() {
+		// 	clearInterval(x);
+		// 	console.log("You clicked the reset button.");
+		// }
+
+	// };
 
 	//Begin using function to calculate and set interval for countdown
 	 
