@@ -39,18 +39,12 @@ window.onload = function () {
 	// display, reset countdown clock
 	function millisecondsToTime(timeGap) {
 		var chosenDate = document.getElementById("chosenDate").value;
-		var chosenTime = document.getElementById("chosenTime").value;
-
-		var date = Date.parse(chosenDate);
-
-		var time = Date.parse(chosenTime);
-
-		var totalMills = chosenTime;
-		var finalMills = totalMills.split(":");
-
-		var timeToMills = (+finalMills[0]) * 60 + (+finalMills[1]) * 60 * 1000;
 
 		var countDownDate = new Date(chosenDate).getTime();
+		// figure out timezone difference
+		var currentDate = new Date();
+		var currentTimezone = currentDate.getTimezoneOffset() / 60;
+		console.log(currentTimezone);
 
 		if (timeGap) {
 			var x = setInterval(function() {
