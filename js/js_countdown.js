@@ -3,6 +3,8 @@
 // ---> Get countdown date and time working (time does not work yet, only by date)
 // ---> Adjust to PST (can I allow user to choose time zone?)
 // ---> Figure out events when radio buttons are clicked
+// ---> Make clear form reset work without starting countdown
+// ---> Set interval for current clock to reflect active seconds
 
 window.onload = function () {
 	console.log("-----> JavaScript is connected. <-----");
@@ -57,7 +59,7 @@ window.onload = function () {
 				var hours = Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 				var minutes = Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60));
 				var seconds = Math.floor((timeGap % (1000 * 60)) / 1000);
-				var finalCountdown = "Years: " + years + " Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
+				var finalCountdown = "Years: " + years + "<br> Days: " + days + "<br> Hours: " + hours + "<br> Minutes: " + minutes + "<br> Seconds: " + seconds;
 				document.getElementById("futureCountdown").innerHTML = finalCountdown;
 
 				if (timeGap < 0) {
